@@ -1,2 +1,1 @@
-web: gunicorn namobot.wsgi --log-file -
-
+web: gunicorn class03.wsgi --log-file -
