@@ -1,3 +1,6 @@
+import json
+
+import requests
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils.decorators import method_decorator
@@ -29,17 +32,19 @@ class NamoBotView(generic.View):
 
         return HttpResponse("None")
 
+
 def reply_to_message(user_id, message):
-	access_token = 'EAACUZB4KE1ZBoBAPZBZCA1xRC556quQmQ2xvdKTxGaLZCqOAC0mUAlLRU1sHuUAkRPCJpyyb77wzEnQn1XA4e08aPxBQ5Tlmz0bb3JZAT1UyalgZCx1xSSrQlvZAGRBoUd7F9feUwmTQyvxBtXTz1daHA2GJwEumeiyCxh3JalT3pwZDZD'
+    access_token = 'EAACUZB4KE1ZBoBAC9hFsUdDjBpUCQWaI7teZCE0Y9ABhSEpvShAfKpZAndOe3Qt2WUxArYAF6n53k1g8drAHGsZBYGkq39mF6uYCFqRbKUZAprQk1ZApBWWFIqG2LcbN3wUqrgB2e9rNRthxtmNJbOJj5c5P20siDh1QDnPsLRxGAZDZD'
     url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' + access_token
 
-	resp = generate_response(message)
-	send_resp = {"recipient":{"id":user_id}, "message":{"text":resp}}
-	response_msg = json.dumps(send_resp)
-	status = requests.post(url, headers={"Content-Type": "application/json"},data=response_msg)
-	print status.json()
+    resp = generate_response(message)
+    send_resp = {"recipient": {"id": user_id}, "message": {"text": resp}}
+    response_msg = json.dumps(send_resp)
+    status = requests.post(url, headers={"Content-Type": "application/json"}, data=response_msg)
+    print status.json()
 
 
 def generate_response(msg):
-	return "Welcome to Coding Blocks :)"
+    return "Welcome to Coding Blocks :)"
+
 
