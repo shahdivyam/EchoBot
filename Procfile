@@ -1,1 +1,1 @@
-web: gunicorn namobot.wsgi
+web: gunicorn namobot.wsgi --log-file -
